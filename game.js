@@ -65,14 +65,3 @@ function playGame(){
 }
 
 playGame()
-
-//var computers_choice = getComputerChoice()
-//var human_choice = getHumanChoice()
-
-//let computer_score = 0
-//let human_score = 0
-//console.log(computers_choice)
-//console.log(human_choice)
-//const [computerscore, humanscore] = playRound(computers_choice,human_choice,computer_score,human_score)
-//console.log("Computer: " + computerscore)
-//console.log("Human: " + humanscore)
