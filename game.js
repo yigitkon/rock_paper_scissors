@@ -46,17 +46,31 @@ function playRound(computersChoice, humanChoice,computerScore,humanScore){
             console.log("Draw")
         }
     }
-    return computerScore,humanScore
+    return [computerScore,humanScore]
+}
+function playGame(){
+    let computer_score = 0
+    let human_score = 0
+    for (let i=1; i<=5; i++){
+        var computers_choice = getComputerChoice()
+        var human_choice = getHumanChoice()
+        let [computerscore, humanscore] = playRound(computers_choice,human_choice,computer_score,human_score)
+        computer_score += computerscore
+        human_score += humanscore
+        console.log("Computer: " + computerscore)
+        console.log("Human: " + humanscore)
+    }
 }
 
+playGame()
 
-var computers_choice = getComputerChoice()
-var human_choice = getHumanChoice()
+//var computers_choice = getComputerChoice()
+//var human_choice = getHumanChoice()
 
-let computer_score = 0
-let human_score = 0
-console.log(computers_choice)
-console.log(human_choice)
-computer_score, human_score = playRound(computers_choice,human_choice,computer_score,human_score)
-console.log("Computer: " + computer_score)
-console.log("Human: " + human_score)
+//let computer_score = 0
+//let human_score = 0
+//console.log(computers_choice)
+//console.log(human_choice)
+//const [computerscore, humanscore] = playRound(computers_choice,human_choice,computer_score,human_score)
+//console.log("Computer: " + computerscore)
+//console.log("Human: " + humanscore)
