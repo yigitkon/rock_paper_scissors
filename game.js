@@ -14,33 +14,35 @@ function getHumanChoice(){
     return choice.toLowerCase()
 }
 
-function playRound(computersChoice, humanChoice,computerScore,humanScore){
+function playRound(computersChoice, humanChoice){
+    let humanScore = 0
+    let computerScore = 0
     if(computersChoice == "rock"){
         if (humanChoice == "paper"){
             console.log("Human Win")
-            humanScore += 1
+            humanScore = 1
         }else if (humanChoice == "scissors"){
             console.log("Computer Win")
-            computerScore +=1
+            computerScore =1
         }else{
             console.log("Draw!")
         }
     }else if (computersChoice == "paper"){
         if (humanChoice == "paper"){
-            console.low("Draw")
+            console.log("Draw")
         }else if(humanChoice == "rock"){
-            computerScore += 1
+            computerScore = 1
             console.log("Computer Win")
         }else{
-            humanScore += 1
+            humanScore = 1
             console.log("Human Win")
         }
     }else{ // computer is scissors
         if (humanChoice == "paper"){
-            computerScore +=1
-            console.low("Computer Win")
+            computerScore =1
+            console.log("Computer Win")
         }else if(humanChoice == "rock"){
-            humanScore += 1
+            humanScore = 1
             console.log("Human Win")
         }else{
             console.log("Draw")
@@ -54,11 +56,11 @@ function playGame(){
     for (let i=1; i<=5; i++){
         var computers_choice = getComputerChoice()
         var human_choice = getHumanChoice()
-        let [computerscore, humanscore] = playRound(computers_choice,human_choice,computer_score,human_score)
+        let [computerscore, humanscore] = playRound(computers_choice,human_choice)
         computer_score += computerscore
         human_score += humanscore
-        console.log("Computer: " + computerscore)
-        console.log("Human: " + humanscore)
+        console.log("Computer: " + computer_score)
+        console.log("Human: " + human_score)
     }
 }
 
