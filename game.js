@@ -10,8 +10,18 @@ function getComputerChoice(){
 }
 
 function getHumanChoice(){
-    let choice = prompt("Rock or Paper or Scissors?")
-    return choice.toLowerCase()
+
+    let userChoice = document.querySelector('.userOutput');
+    document.addEventListener("click",userSelection);
+
+    function userSelection(e){
+        if (e.target.classList.contains("button")){
+            userChoice.textContent = e.target.value;
+        }
+        console.log(e.target.id)
+    }
+
+
 }
 
 function playRound(computersChoice, humanChoice){
@@ -63,5 +73,8 @@ function playGame(){
         console.log("Human: " + human_score)
     }
 }
+
+
+getHumanChoice()
 
 //playGame()
