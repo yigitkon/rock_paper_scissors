@@ -18,10 +18,11 @@ function getHumanChoice(){
         if (e.target.classList.contains("button")){
             userChoice.textContent = e.target.value;
         }
-        console.log(e.target.id)
+        console.log(e.target.it)
+        return e.target.id
+        
     }
-
-
+    
 }
 
 function playRound(computersChoice, humanChoice){
@@ -76,5 +77,7 @@ function playGame(){
 
 
 getHumanChoice()
+
+//playRound(computersChoice,humansChoice)
 
 //playGame()
