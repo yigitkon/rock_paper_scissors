@@ -10,7 +10,6 @@ function getComputerChoice(){
 }
 
 function getHumanChoice(){
-
     let userChoice = document.querySelector('.userOutput');
     document.addEventListener("click",userSelection);
 
