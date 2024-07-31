@@ -8,72 +8,121 @@ function getComputerChoice(){
         return "scissors"
     }
 }
+function texts(i,computer,user,computerScore,humanScore,text){
+    const container = document.querySelector("#container");
 
-function getHumanChoice(){
-    let userChoice = document.querySelector('.userOutput');
-    document.addEventListener("click",userSelection);
+    document.getElementById("container").innerHTML="";
 
-    function userSelection(e){
+    const roundnumber = document.createElement("h3");
+    roundnumber.classList.add("round-number");
+    roundnumber.textContent = "ROUND " + i;
+    container.appendChild(roundnumber);
+
+    const computercontent = document.createElement("div");
+    computercontent.classList.add("computerchoice");
+    computercontent.textContent = "Computer: " + computer;
+    container.appendChild(computercontent);
+
+    const usercontent = document.createElement("div");
+    usercontent.classList.add("userchoice");
+    usercontent.textContent = "User: " + user;
+    container.appendChild(usercontent);
+
+    const winnertext = document.createElement("h4");
+    winnertext.classList.add("winner");
+    winnertext.textContent = text;
+    container.appendChild(winnertext);
+
+    const computerscore = document.createElement("div");
+    computerscore.classList.add("computerscore");
+    computerscore.textContent = "Computer: " + computerScore;
+    container.appendChild(computerscore);
+
+    const humanscore = document.createElement("div");
+    humanscore.classList.add("humanscore");
+    humanscore.textContent = "User: " + humanScore;
+    container.appendChild(humanscore);
+
+    const linebreak = document.createElement("br");
+    container.appendChild(linebreak);
+
+}
+
+
+function rpsChoice(){
+    let i = 0;
+    let humanScore = 0;
+    let computerScore = 0;
+    const userChoice = document.querySelector('.userOutput');
+    document.addEventListener("click",getHumanChoice);
+
+    function getHumanChoice(e){
+
         if (e.target.classList.contains("button")){
-            userChoice.textContent = e.target.value;
+            const user = e.target.id;
+            const computer = getComputerChoice();
+            const roundNumber = i ++;
+
+            [computerWin,userWin,text] = playRound(computer,user);
+            if (computerWin == 1){
+                computerScore += 1;
+            }else if (userWin == 1){
+                humanScore += 1;
+            }
+            texts(i,computer,user,computerScore,humanScore,text);
         }
-        console.log(userChoice)
-        return userChoice
+        if(computerScore == 5){
+            alert("COMPUTER WIN");
+            document.getElementById("container").innerHTML="";
+        }else if(humanScore == 5){
+            alert("YOU WIN")
+            document.getElementById("container").innerHTML="";
+        }
         
     }
-    
 
+    
 }
 
 function playRound(computersChoice, humanChoice){
-    let humanScore = 0
-    let computerScore = 0
+    let humanWin = 0;
+    let computerWin = 0;
+    let text = ""
     if(computersChoice == "rock"){
         if (humanChoice == "paper"){
-            console.log("Human Win")
-            humanScore = 1
+            text = "Human Win";
+            humanWin = 1;
         }else if (humanChoice == "scissors"){
-            console.log("Computer Win")
-            computerScore =1
+            text = "Computer Win";
+            computerWin = 1;
         }else{
-            console.log("Draw!")
+            text = "Draw"
         }
     }else if (computersChoice == "paper"){
         if (humanChoice == "paper"){
-            console.log("Draw")
+            text = "Draw"
         }else if(humanChoice == "rock"){
-            computerScore = 1
-            console.log("Computer Win")
+            text = "Computer Win";
+            computerWin = 1;
         }else{
-            humanScore = 1
-            console.log("Human Win")
+            text = "Human Win";
+            humanWin = 1;
         }
     }else{ // computer is scissors
         if (humanChoice == "paper"){
-            computerScore =1
-            console.log("Computer Win")
+            text = "Computer Win";
+            computerWin = 1;
         }else if(humanChoice == "rock"){
-            humanScore = 1
-            console.log("Human Win")
+            text = "Human Win";
+            humanWin = 1;
         }else{
-            console.log("Draw")
+            text = "Draw";
         }
     }
-    return [computerScore,humanScore]
-}
-function playGame(){
-    let computer_score = 0
-    let human_score = 0
-    for (let i=1; i<=5; i++){
-        var computers_choice = getComputerChoice()
-        var human_choice = getHumanChoice()
-        let [computerscore, humanscore] = playRound(computers_choice,human_choice)
-        computer_score += computerscore
-        human_score += humanscore
-        console.log("Computer: " + computer_score)
-        console.log("Human: " + human_score)
-    }
+    return [computerWin,humanWin,text]
 }
 
-getHumanChoice()
-//playGame()
+
+rpsChoice()
+
+
